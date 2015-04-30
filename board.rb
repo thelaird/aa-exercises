@@ -35,4 +35,12 @@ class Board
 end
 
 board = Board.new
-p board.grid[5].all? { |x| x.nil? }
+p board
+board[[2,4]].perform_slide([3,5])
+p board
+p board[[3,5]]
+board[[3,5]].perform_slide([4,4])
+p board
+p board[[5,5]].perform_jump([3,3])
+p board[[4,4]]
+p board
