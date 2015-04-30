@@ -1,7 +1,14 @@
 require_relative "pieces.rb"
+require 'colorize'
+require 'unicode'
 
 class Board
   attr_accessor :grid
+
+  WHITE_PIECE = "\u2687"
+  WHITE_KING =  "\u2654"
+  BLACK_PIECE = "\u2689"
+  BLACK_KING =  "\u265a"
 
   def initialize
     @grid = Array.new(8) { Array.new(8) }
@@ -16,6 +23,49 @@ class Board
   def []=(pos,piece)
     row,col = pos
     @grid[row][col] = piece
+  end
+
+  def display
+    system 'clear'
+    puts "   0  1  2  3  4  5  6  7 "
+    @grid.each_with_index do |row,idx_x|
+      print "#{idx_x} "
+      row.each_with_index do |square,idx_y|
+        if square.nil?
+          display_squares(square,idx_x,idx_y)
+        elsif square.king
+          display_kings(square)
+        else
+          display_pieces(square)
+        end
+      end
+      puts
+    end
+    puts ''
+  end
+
+  def display_kings(square)
+    if square.color == :black
+      print " #{BLACK_KING} ".on_light_red
+    else
+      print " #{WHITE_KING} ".on_light_red
+    end
+  end
+
+  def display_pieces(square)
+    if square.color == :black
+      print " #{BLACK_PIECE} ".on_light_red
+    else
+      print " #{WHITE_PIECE} ".on_light_red
+    end
+  end
+
+  def display_squares(square,x,y)
+    if x.even? && y.odd? || x.odd? && y.even?
+      print "   ".on_light_blue
+    else
+      print "   ".on_light_red
+    end
   end
 
   def setup_board
@@ -35,12 +85,5 @@ class Board
 end
 
 board = Board.new
-p board
-board[[2,4]].perform_slide([3,5])
-p board
-p board[[3,5]]
-board[[3,5]].perform_slide([4,4])
-p board
-p board[[5,5]].perform_jump([3,3])
-p board[[4,4]]
-p board
+board[[2,2]].perform_slide([3,3])
+board.display
