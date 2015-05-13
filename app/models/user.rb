@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true
   validates :username, :session_token, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :cats, dependent: :destroy
   has_many :requests, class_name: 'CatRentalRequest', dependent: :destroy
 
   after_initialize :ensure_session_token
+
+  attr_reader :password
 
   def self.find_by_credentials(username, password)
     user = self.find_by(username: username)
@@ -13,8 +16,9 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    new_token = SecureRandom::urlsafe_base64
-    new_token if self.update(session_token: new_token)
+    self.session_token = SecureRandom::urlsafe_base64
+    self.save!
+    session_token
   end
 
   def password=(password)
