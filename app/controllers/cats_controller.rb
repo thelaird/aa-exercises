@@ -51,7 +51,7 @@ class CatsController < ApplicationController
 
   def check_cat_owner
     cat = Cat.find(params[:id])
-    unless cat.user_id == current_user.id
+    unless current_user && cat.user_id == current_user.id
       flash[:errors] = ["You do not have permission to edit this cat."]
       redirect_to cat_url(cat)
     end

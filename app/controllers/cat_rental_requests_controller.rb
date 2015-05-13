@@ -8,6 +8,7 @@ class CatRentalRequestsController < ApplicationController
 
   def create
     @rental_request = CatRentalRequest.new(cat_rental_request_params)
+    @rental_request.user_id = current_user.id
     if @rental_request.save
       redirect_to cat_url(@rental_request.cat)
     else
@@ -41,10 +42,10 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def check_cat_owner
-    cat = Cat.find(params[:id])
-    unless cat.user_id == current_user.id
-      flash[:errors] = ["You do not have permission to edit this cat."]
-      redirect_to cat_url(cat)
+    req = CatRentalRequest.find(params[:id])
+    unless req.owner == current_user
+      flash[:errors] = ["You do not have permission to approve/deny this request."]
+      redirect_to cat_url(req.cat)
     end
   end
 end

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :username, :session_token, uniqueness: true
 
   has_many :cats, dependent: :destroy
+  has_many :requests, class_name: 'CatRentalRequest', dependent: :destroy
 
   after_initialize :ensure_session_token
 
