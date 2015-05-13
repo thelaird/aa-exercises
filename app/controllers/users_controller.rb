@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_not_logged_in
+
   def new
     @user = User.new
     render :new
@@ -8,12 +10,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to cats_url
+      login_user!(@user)
     else
-      flash.new[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
+      render :new
     end
-
-    render :new
   end
 
   private
