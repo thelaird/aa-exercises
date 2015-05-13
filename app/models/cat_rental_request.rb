@@ -2,6 +2,7 @@ class CatRentalRequest < ActiveRecord::Base
   STATUS_STATES = %w(APPROVED DENIED PENDING)
 
   belongs_to :cat
+  belongs_to :owner, through: :cat, source: :owner
 
   after_initialize :assign_pending_status
 
