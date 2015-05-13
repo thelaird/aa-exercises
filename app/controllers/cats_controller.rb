@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
   before_action :check_cat_owner, only: [:edit, :update]
+  before_action :require_login, only: [:create, :new, :edit, :update]
 
   def index
     @cats = Cat.all
@@ -50,6 +51,7 @@ class CatsController < ApplicationController
   end
 
   def check_cat_owner
+    # move in User class
     cat = Cat.find(params[:id])
     unless current_user && cat.user_id == current_user.id
       flash[:errors] = ["You do not have permission to edit this cat."]
