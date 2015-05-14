@@ -1,0 +1,10 @@
+<h1>Session info</h1>
+<ul>
+  <% @sessions.each do |session| %>
+    <li>
+    <%= link_to 'delete', session_url(session), method: :delete %>
+    <%= session.session_token %>
+    <%= '(current)' if session == current_session %>
+    </li>
+  <% end %>
+</ul>
