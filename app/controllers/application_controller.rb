@@ -5,16 +5,20 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    @current_user ||= User.find_by(session_token: session[:session_token])
+    @current_user ||= User.find_by_session_token(session[:session_token])
+  end
+
+  def current_session
+    @current_session ||= Session.find_by(session_token: session[:session_token])
   end
 
   def login_user!
-    session[:session_token] = @user.reset_session_token!
+    session[:session_token] = @user.sessions.create.session_token
     redirect_to cats_url
   end
 
   def logout!
-    current_user.reset_session_token!
+    current_session.delete
     session[:session_token] = nil
     redirect_to new_session_url
   end
