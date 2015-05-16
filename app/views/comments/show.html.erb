@@ -1,0 +1,13 @@
+<p>
+<%= @comment.content %>
+<p>
+<% unless @comment.parent_id.nil? %>
+<a href='<%= comment_url(@comment.parent_id) %>'>Going up!</a>
+<% end %>
+<%= link_to "Post", post_url(@comment.post_id) %>
+<%= render 'children', comment: @comment %>
+
+
+<%= render 'shared/errors' %>
+
+<%= render 'form', comment: @comment, parent_id: @comment.id, post_id: @post_id %>

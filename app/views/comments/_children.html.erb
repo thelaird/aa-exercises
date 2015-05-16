@@ -1,0 +1,9 @@
+<% unless comment.child_comments.empty? %>
+  <% comment.child_comments.each do |comment| %>
+  <ul>
+    <li><%= comment.content %>  | <a href='<%= comment_url(comment) %>'><%= time_ago_in_words(comment.created_at) %></a></li>
+    <%= render 'comments/children', comment: comment %>
+  </ul>
+  
+  <% end %>
+<% end %>

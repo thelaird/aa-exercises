@@ -1,0 +1,18 @@
+<%= render 'shared/errors' %>
+
+<h1><%= @post.title %></h1>
+
+<p><%= @post.content %></p>
+<p><%= @post.url %></p>
+<% unless @comments.empty? %>
+<h2>Comments</h2>
+<ul>
+  <% @comments.each do |comment| %>
+  <ul>
+    <li><%= comment.content %>  | <a href='<%= comment_url(comment) %>'><%= time_ago_in_words(comment.created_at) %></a></li>
+    <%= render 'comments/children', comment: comment %>
+  </ul><p>
+  <% end %>
+</ul>
+<% end %>
+<p><%= link_to "New Comment", new_post_comment_url(@post) %></p>

@@ -1,0 +1,9 @@
+<form action="<%= comments_url %>" method='POST'>
+  <%= authenticity %>
+  <input type='hidden' name='comment[post_id]' value='<%= post_id %>'>
+  <input type='hidden' name='comment[parent_id]' value='<%= parent_id %>'>
+  <label>Comment Goes Here
+    <textarea name='comment[content]'></textarea>
+  </label>
+  <input type='submit' value='Submit Comment'>
+</form>
