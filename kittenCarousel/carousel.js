@@ -14,7 +14,20 @@ $.Carousel.prototype.slide = function (dir) {
   this.$el.find(".items img").eq(this.activeIdx).removeClass("active");
   this.activeIdx += dir;
   this.activeIdx %= this.$el.find(".items img").length;
-  this.$el.find(".items img").eq(this.activeIdx).addClass("active");
+  var that = this;
+  if (dir === 1){
+    this.$el.find(".items img").eq(this.activeIdx).addClass("left active");
+    setTimeout( function () {
+      that.$el.find(".items img").eq(that.activeIdx).removeClass("left");
+    }, 0);
+
+  } else {
+    this.$el.find(".items img").eq(this.activeIdx).addClass("right active");
+    setTimeout( function () {
+      that.$el.find(".items img").eq(that.activeIdx).removeClass("right");
+    }, 0);
+  }
+
 };
 
 $.Carousel.prototype.slideLeft = function () {
