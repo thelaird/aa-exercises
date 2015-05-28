@@ -9,3 +9,9 @@ div.tab-pane {
 div.tab-pane.active {
   display: block;
 }
+
+.transitioning {
+  opacity: 0;
+  display: block;
+  transition: opacity 500ms linear;
+}

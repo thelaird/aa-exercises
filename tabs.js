@@ -1,6 +1,6 @@
 $.Tabs = function (el) {
   this.$el = $(el);
-  this.$contentTabs = $(this.$el.attr("data-content-tabs"));
+  this.$contentTabs = $(this.$el.data("content-tabs"));
   this.$activeTab = this.$contentTabs.find(".active");
   this.$activeLink = this.$el.find(".active");
   this.$el.on('click', 'a', this.clickTab.bind(this));
@@ -14,9 +14,13 @@ $.fn.tabs = function () {
 
 
 $.Tabs.prototype.clickTab = function (event) {
-  this.$activeTab.removeClass('active');
+  var that = this;
+  this.$activeTab.addClass('transitioning');
   this.$activeLink.removeClass('active');
   this.$activeLink = $(event.currentTarget).addClass('active');
-  this.$activeTab = $(this.$activeLink.attr("href")).addClass('active');
 
+  this.$activeTab.one('transitionend', function (event){
+    that.$activeTab.removeClass('transitioning').removeClass('active');
+    that.$activeTab = $(that.$activeLink.attr("href")).addClass('active');
+  });
 };
