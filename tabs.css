@@ -8,6 +8,7 @@ div.tab-pane {
 
 div.tab-pane.active {
   display: block;
+  transition: opacity 500ms linear;
 }
 
 .transitioning {

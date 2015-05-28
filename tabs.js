@@ -20,7 +20,11 @@ $.Tabs.prototype.clickTab = function (event) {
   this.$activeLink = $(event.currentTarget).addClass('active');
 
   this.$activeTab.one('transitionend', function (event){
-    that.$activeTab.removeClass('transitioning').removeClass('active');
-    that.$activeTab = $(that.$activeLink.attr("href")).addClass('active');
+    that.$activeTab.removeClass('active transitioning');
+    that.$activeTab = $(that.$activeLink.attr("href")).addClass('active transitioning');
+
+    setTimeout(function () {
+      that.$activeTab.removeClass('transitioning');
+    }, 0);
   });
 };
