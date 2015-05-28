@@ -3,11 +3,23 @@ $.Thumbnails = function (el) {
   this.$activeImg = this.$el.find(".gutter-images :first-child").addClass("active");
   this.activate(this.$activeImg);
   this.clickHandler();
+
+  this.gutterIdx = 0;
+  this.$images = this.$el.find(".gutter-images img");
+  this.fillGutterImages();
 };
 
 $.Thumbnails.prototype.activate = function ($img) {
   $('div.active').empty();
   $img.clone().appendTo($("div.active"));
+};
+
+
+$.Thumbnails.prototype.fillGutterImages = function () {
+  this.$el.find(".gutter-images").empty();
+  for (var i = this.gutterIdx; i < this.gutterIdx + 5; i++) {
+    this.$el.find(".gutter-images").append(this.$images.eq(i));
+  }
 };
 
 $.Thumbnails.prototype.clickHandler = function () {
