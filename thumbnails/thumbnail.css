@@ -1,0 +1,22 @@
+.gutter-images img {
+  width: 20%;
+  display: block;
+  float: left;
+  height: 60px;
+}
+
+.gutter-images {
+  position: absolute;
+  bottom: -100px;
+}
+
+div.thumbnails {
+  width: 400px;
+  margin: 20px auto;
+  position: relative;
+  height: 570px;
+}
+
+div.active img {
+  width: 100%;
+}
