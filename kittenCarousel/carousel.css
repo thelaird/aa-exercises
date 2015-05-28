@@ -1,0 +1,19 @@
+div.carousel {
+  height: 300px;
+  width: 200px;
+  margin: auto;
+}
+
+div.items {
+  height: 100%;
+  width: 100%;
+}
+
+.items > :not(.active){
+  display: none;
+}
+
+img {
+  height: 300px;
+  width: 200px;
+}
