@@ -35,6 +35,14 @@ $.Thumbnails.prototype.clickHandler = function () {
   $(".gutter-images").on("mouseleave", "img", function (event) {
     that.activate(that.$activeImg);
   });
+  $("a.nav").on("click", function () {
+    if ($(event.currentTarget).text() === "<") {
+      that.gutterIdx -= 1;
+    } else {
+      that.gutterIdx += 1;
+    }
+    that.fillGutterImages();
+  });
 };
 
 $.fn.thumbnails = function () {
