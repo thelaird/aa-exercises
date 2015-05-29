@@ -1,0 +1,7 @@
+div.zoomable {
+  width: 400px;
+}
+
+div.zoomable img {
+  width: 100%;
+}
