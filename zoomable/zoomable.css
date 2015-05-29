@@ -5,3 +5,8 @@ div.zoomable {
 div.zoomable img {
   width: 100%;
 }
+
+.focus-box {
+  position: absolute;
+  background-color: white;
+}
