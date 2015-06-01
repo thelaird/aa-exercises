@@ -6,7 +6,7 @@ var Pokedex = window.Pokedex; //to appease JSHint
 
 Pokedex.Models.Pokemon = Backbone.Model.extend({
   urlRoot: '/pokemon'
-}); // WRITE ME
+});
 
 Pokedex.Models.Toy = null; // WRITE ME IN PHASE 2
 
@@ -47,6 +47,7 @@ window.Pokedex.RootView = function ($el) {
 
   // Click handlers go here.
   this.$pokeList.on('click','li', this.selectPokemonFromList.bind(this));
+  this.$el.find(".new-pokemon").on('submit', this.submitPokemonForm.bind(this))
 };
 
 $(function() {

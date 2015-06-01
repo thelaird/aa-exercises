@@ -3,7 +3,7 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
   $details.append($('<img>').attr('src', pokemon.get('image_url')));
   var $attrList = $('<ul>');
   for (var key in pokemon.attributes) {
-    if (key !== 'image_url' && key !== 'id') {
+    if (key !== 'image_url' && key !== 'id' && key !== 'pokemon') {
       var $attr = $('<li>').text(key + " : " + pokemon.attributes[key]);
       $attrList.append($attr);
     }
