@@ -9,6 +9,15 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
     }
   }
   $details.append($attrList);
+  var that = this;
+  pokemon.fetch({
+    success: function() {
+      pokemon.toys().each(function (toy) {
+        that.addToyToList(toy);
+      });
+    }
+  });
+  $details.append($('<ul>').addClass('toys'));
   this.$pokeDetail.html($details);
 };
 
