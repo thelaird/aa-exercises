@@ -29,7 +29,8 @@ Pokedex.Models.Toy = Backbone.Model.extend({
 
 Pokedex.Collections.Pokemon = Backbone.Collection.extend({
   url: '/pokemon',
-  model: Pokedex.Models.Pokemon
+  model: Pokedex.Models.Pokemon,
+  comparator: 'id'
 });
 
 Pokedex.Collections.PokemonToys = Backbone.Collection.extend({
@@ -69,6 +70,7 @@ window.Pokedex.RootView = function ($el) {
   this.$el.find(".new-pokemon").on('submit', this.submitPokemonForm.bind(this));
   this.$pokeDetail.on('click', '.toy-list-item', this.selectToyFromList.bind(this));
   this.$toyDetail.on('change', 'select', this.reassignToy.bind(this));
+  this.$pokeDetail.on('submit', '.update-poke', this.updatePoke.bind(this));
 };
 
 $(function() {
