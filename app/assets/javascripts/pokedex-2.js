@@ -27,7 +27,6 @@ Pokedex.RootView.prototype.renderToyDetail = function (toy) {
     $pokeSelect.append($option);
   });
   $detail.append($ul).append($pokeSelect);
-  this.$toyDetail.css('background-color', "white");
   this.$toyDetail.append($detail);
 };
 

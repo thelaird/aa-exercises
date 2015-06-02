@@ -114,3 +114,16 @@ body {
   max-width: 300px;
   max-height: 200px;
 }
+
+.pokemon-detail li {
+  list-style-type: none;
+}
+
+.toy-detail {
+  background: white;
+  position: fixed;
+}
+
+ul {
+  list-style-type: none;
+}
