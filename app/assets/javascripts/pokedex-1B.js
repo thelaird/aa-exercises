@@ -9,7 +9,6 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
     if (key !== 'id' && key !== 'pokemon') {
       var $input = $('<input>').attr('type', 'text').attr('name', 'pokemon[' + key + ']');
       $input.val(pokemon.attributes[key]);
-      // var $attr = $('<li>').text(key + " : " + pokemon.attributes[key]);
       $attrList.append($('<li>').text(key + ": ").append($input));
     }
   }
@@ -40,10 +39,12 @@ Pokedex.RootView.prototype.updatePoke = function (event) {
 
 Pokedex.RootView.prototype.deletePoke = function (event) {
   event.preventDefault();
-  var poke = this.pokes.get($(event.currentTarget).data('pokemon-id'));
+  var that = this;
+  var poke = this.pokes.get($('.update-poke').data('pokemon-id'));
   poke.destroy( {
     success: function () {
-    alert("Destroyed!");
+    that.$pokeList.empty();
+    that.refreshPokemon();
     }
   });
 
