@@ -71,6 +71,7 @@ window.Pokedex.RootView = function ($el) {
   this.$pokeDetail.on('click', '.toy-list-item', this.selectToyFromList.bind(this));
   this.$toyDetail.on('change', 'select', this.reassignToy.bind(this));
   this.$pokeDetail.on('submit', '.update-poke', this.updatePoke.bind(this));
+  this.$pokeDetail.on('click', '.delete-poke', this.deletePoke.bind(this));
 };
 
 $(function() {
