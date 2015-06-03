@@ -1,6 +1,7 @@
 window.Pokedex = (window.Pokedex || {});
 window.Pokedex.Models = {};
 window.Pokedex.Collections = {};
+window.Pokedex.Views = {};
 
 Pokedex.Models.Pokemon = Backbone.Model.extend({
   urlRoot: '/pokemon',
@@ -37,7 +38,8 @@ Pokedex.Models.Toy = Backbone.Model.extend({
 
 Pokedex.Collections.Pokemon = Backbone.Collection.extend({
   model: Pokedex.Models.Pokemon,
-  url: '/pokemon'
+  url: '/pokemon',
+  comparator: 'name'
 });
 
 Pokedex.Collections.PokemonToys = Backbone.Collection.extend({
@@ -91,8 +93,8 @@ window.Pokedex.RootView = function ($el) {
   );
 };
 
-$(function() {
-  var $rootEl = $('#pokedex');
-  window.Pokedex.rootView = new Pokedex.RootView($rootEl);
-  window.Pokedex.rootView.refreshPokemon();
-});
+// $(function() {
+//   var $rootEl = $('#pokedex');
+//   window.Pokedex.rootView = new Pokedex.RootView($rootEl);
+//   window.Pokedex.rootView.refreshPokemon();
+// });
