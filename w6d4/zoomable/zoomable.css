@@ -1,0 +1,12 @@
+div.zoomable {
+  width: 400px;
+}
+
+div.zoomable img {
+  width: 100%;
+}
+
+.focus-box {
+  position: absolute;
+  background-color: white;
+}
