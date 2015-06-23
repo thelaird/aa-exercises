@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NinetyNineCatsDay1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+  <pre>
+    Hi, <%= current_user.username %>
+    <%= button_to 'Log out', session_url(current_session), method: :delete %>
+  </pre>
+<% else %>
+  <pre>
+    We would be <em>delighted</em> if you would
+    <%= link_to 'Log In', new_session_url %>
+  </pre>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
