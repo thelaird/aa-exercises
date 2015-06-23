@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% unless logged_in? %>
+  <a href='/session/new'>Log In!</a>
+<% else %>
+  <%= link_to "Sign Out", session_url, method: :delete %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

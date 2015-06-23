@@ -1,0 +1,20 @@
+<%= render 'shared/errors' %>
+
+<form action='<%= action_url %>' method='POST'>
+  <%= authenticity %>
+
+  <% if @sub.persisted? %>
+    <input type='hidden' name='_method' value='PATCH'>
+  <% end %>
+
+  <label>Sub Title
+    <input type="text" name="sub[title]" value="<%= @sub.title %>">
+  </label>
+
+  <label>Sub Description
+    <textarea name="sub[description]"><%= @sub.description %>
+    </textarea>
+  </label>
+
+  <input type='submit' value='<%= submit_text %>'>
+</form>
